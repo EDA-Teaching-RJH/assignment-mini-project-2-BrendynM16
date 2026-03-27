@@ -34,3 +34,16 @@ class DatingAdviceBot(BaseBot):
         #training the Custom NLP Library
         self.nlp = NLPEngine()
         self.nlp.train(self.df['Situation'])
+
+    def get_advice(self, user_input, threshold=0.15):
+            # Use custom library to get scores
+            similarity_scores = self.nlp.get_similarity(user_input)
+        
+            best_match_index = similarity_scores.argmax()
+            highest_score = similarity_scores[best_match_index]
+        
+            if highest_score > threshold:
+                row = self.df.iloc[best_match_index]
+                return row['Situation'], row['Good Advice'], row['Bad Advice'], highest_score
+            else:
+                return None, None, None, highest_score
