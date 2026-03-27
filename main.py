@@ -1,4 +1,9 @@
 import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-import re
+import sys
+from datetime import datetime
+
+#Importing my newly created custom library
+from nlp_engine import NLPEngine
+
+# 1. OOP: The Superclass base which will e the basebot for the algorithm
+class BaseBot:
