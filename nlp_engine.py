@@ -4,3 +4,4 @@ from sklearn.metrics.pairwise import cosine_similarity
 import re
 
 class NLPEngine:
+    def __init__(self, stop_words='english'):
