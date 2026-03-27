@@ -5,3 +5,7 @@ import re
 
 class NLPEngine:
     def __init__(self, stop_words='english'):
+        self.vectorizer = TfidfVectorizer(stop_words=stop_words)
+        self.tfidf_matrix = None
+
+    def clean_text(self, text):
