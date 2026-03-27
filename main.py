@@ -72,3 +72,7 @@ class DatingAdviceBot(BaseBot):
             else:
                 print(f"Hmm, it seems like closest match was {round(score * 100, 1)}%. Too low for me to be confident.")
             print("-" * 50 + "\n")
+
+if __name__ == "__main__":
+    bot = DatingAdviceBot()
+    bot.run()
