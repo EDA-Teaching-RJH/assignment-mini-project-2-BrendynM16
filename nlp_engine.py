@@ -17,3 +17,15 @@ class NLPEngine:
         return cleaned.lower()
 
     def train(self, corpus):
+        """Trains the TF-IDF model on the csv file(dating_data.csv)."""
+        cleaned_corpus = [self.clean_text(doc) for doc in corpus]
+        self.tfidf_matrix = self.vectorizer.fit_transform(cleaned_corpus)
+
+    def get_similarity(self, query):
+        """Returns an array of similarity scores for the query."""
+        if self.tfidf_matrix is None:
+            raise ValueError("Model has not been trained yet.")
+            
+        cleaned_query = self.clean_text(query)
+        query_vec = self.vectorizer.transform([cleaned_query])
+        return cosine_similarity(query_vec, self.tfidf_matrix)[0]
