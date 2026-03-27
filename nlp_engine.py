@@ -9,3 +9,11 @@ class NLPEngine:
         self.tfidf_matrix = None
 
     def clean_text(self, text):
+        """
+        this uses Regex we learned to strip out punctuation, numbers, and special characters,
+        leaving only lowercase letters and spaces for better NLP matching.
+        """
+        cleaned = re.sub(r'[^a-zA-Z\s]', '', text)
+        return cleaned.lower()
+
+    def train(self, corpus):
