@@ -47,3 +47,28 @@ class DatingAdviceBot(BaseBot):
                 return row['Situation'], row['Good Advice'], row['Bad Advice'], highest_score
             else:
                 return None, None, None, highest_score
+
+    def run(self):
+        self.greet() #from my basebot
+        
+        while True:
+            user_input = input("Tell me about your dating situation or problem: ")
+            
+            if user_input.lower().strip() == 'quit':
+                print("Good luck out there! Goodbye.")
+                break
+                
+            self.log_interaction(user_input)
+            
+            matched_sit, good_adv, bad_adv, score = self.get_advice(user_input, threshold=0.15)
+            
+            print("-" * 50)
+            if matched_sit:
+                match_percent = round(score * 100, 1)
+                print(f"🔍 Match Found ({match_percent}% confidence).")
+                print(f"📝 Situation: '{matched_sit}'\n")
+                print(f"✅ GOOD ADVICE:\n   {good_adv}\n")
+                print(f"❌ BAD ADVICE:\n   {bad_adv}")
+            else:
+                print(f"Hmm, it seems like closest match was {round(score * 100, 1)}%. Too low for me to be confident.")
+            print("-" * 50 + "\n")
