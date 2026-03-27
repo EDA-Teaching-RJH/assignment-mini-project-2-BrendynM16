@@ -28,3 +28,6 @@ class TestNLPEngine(unittest.TestCase):
         scores = self.nlp.get_similarity("xyz abc fgh")
         self.assertEqual(scores[0], 0.0)
         self.assertEqual(scores[1], 0.0)
+
+if __name__ == '__main__':
+    unittest.main()
